@@ -95,3 +95,56 @@ ngrok http localhost:5001
 
 # Good to know 💡💡
 - Using the multimodel feature is only possible with images that arent in HEIF format. You can change this in your camera settings (it wont affect your existing photos) under formats choose most compatible and you are good to go.
+
+# Docker 部署 🐳
+
+使用Docker可以更简单地部署SiriLLama，无需担心环境配置问题。以下是使用Docker运行SiriLLama的步骤：
+
+1. 确保您的机器上已安装[Docker](https://www.docker.com/products/docker-desktop/)
+
+2. 在项目根目录下构建Docker镜像
+```bash
+docker build -t sirillama .
+```
+
+3. 运行Docker容器
+```bash
+docker run -p 5001:5001 sirillama
+```
+
+4. 现在您可以通过Apple设备上的快捷指令访问SiriLLama，与非Docker部署方式相同
+
+## Docker与Ollama结合使用
+
+如果您使用Ollama作为LLM提供商，并且Ollama运行在同一台机器上，您需要确保Docker容器可以访问Ollama服务：
+
+```bash
+# 假设Ollama运行在默认端口11434
+docker run -p 5001:5001 --add-host=host.docker.internal:host-gateway sirillama
+```
+
+然后在`config.py`中设置Ollama的基础URL为：
+```python
+OLLAMA_BASE_URL = "http://host.docker.internal:11434"
+```
+
+## 使用Docker Compose
+
+您也可以创建一个`docker-compose.yml`文件来简化部署：
+
+```yaml
+version: '3'
+services:
+  sirillama:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+```
+
+然后运行：
+```bash
+docker-compose up
+```
