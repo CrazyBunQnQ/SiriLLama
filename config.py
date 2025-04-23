@@ -1,20 +1,29 @@
 # Parameters
-MEMORY_SIZE = 5  # Number of messages to remember
-ANSWER_SIZE_WORDS = 30  # Number of words in an answer
+MEMORY_SIZE = 10  # Number of messages to remember
+ANSWER_SIZE_WORDS = 40  # Number of words in an answer
 MAX_TOKENS = ANSWER_SIZE_WORDS / 0.75  # rough approximation
-CHUNCK_SIZE = 1024  # of vetorstore
+CHUNCK_SIZE = 4096  # of vetorstore
 CHUNK_OVERLAP = 200  # of vetorstore
 
 # Prompts
-PROMPT_CHAT = f"You're Siri LLama, an open source AI smarter than Siri that runs on user's devices. You're helping a user with tasks, for any question answer very briefly (answer is about {ANSWER_SIZE_WORDS} words) and informatively. else, ask for more information."
-PROMPT_VISUAL_CHAT = "You're Siri LLama, an open source AI that saw an image, and give answers about it. anytime you're asked about (it) answer about the image you've seen"
+PROMPT_CHAT = f"你是高智商 Siri，一个比 Siri 更聪明的 AI。你正在帮助用户执行任务，对于任何问题，回答都非常简洁(回答大概是 {ANSWER_SIZE_WORDS} 个词）和信息。否则，要求用户提供更多信息。"
+PROMPT_VISUAL_CHAT = "你是高智商 Siri，一个能够看到图像的 AI，并给出关于图像的答案。每当你被问到时都结合你看到的图像进行回答"
 
-PROVIDER = "ollama"  # or "fireworks"
+PROVIDER = "openai"  # "ollama" or "fireworks" or "openai"
 # Models
+# OpenAI
+OPENAI_CHAT = "grok-3-fast-beta"
+OPENAI_VISUAL_CHAT = "grok-2-vision-1212"
+OPENAI_EMBEDDINGS_MODEL = "nomic-embed-text:latest"
+OPENAI_BASE_URL = "https://api.x.ai/v1"
+OPENAI_EMBEDDINGS_MODEL_URL = "http://127.0.0.1:11434"
+OPENAI_API_KEY = "<API_KEY>"
+
 # Ollama
-OLLAMA_CHAT = "llama3.1:8b"
-OLLAMA_VISUAL_CHAT = "moondream"
-OLLAMA_EMBEDDINGS_MODEL = "0ssamaak0/nomic-embed-text:latest"
+OLLAMA_CHAT = "gemma3:12b"
+OLLAMA_VISUAL_CHAT = "gemma3:12b"
+OLLAMA_EMBEDDINGS_MODEL = "nomic-embed-text:latest"
+OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 # Fireworks
 FIREWORKS_CHAT = "accounts/fireworks/models/llama-v3p1-8b-instruct"

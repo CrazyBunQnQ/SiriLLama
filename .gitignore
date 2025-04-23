@@ -1,3 +1,4 @@
 fireworks_api.txt
 notebooks/
 __pycache__
+*.bak
