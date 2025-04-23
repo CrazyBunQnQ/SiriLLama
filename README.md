@@ -109,7 +109,8 @@ docker build -t sirillama .
 
 3. 运行Docker容器
 ```bash
-docker run -p 5001:5001 sirillama
+docker run -p 5001:5000 sirillama
+docker run -itd --name sirillama --restart always -e TZ=Asia/Shanghai -p 5001:5000 sirillama
 ```
 
 4. 现在您可以通过Apple设备上的快捷指令访问SiriLLama，与非Docker部署方式相同
